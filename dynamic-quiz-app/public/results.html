@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Results | Dynamic Quiz Application</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container">
+        <h1>Quiz Results</h1>
+        <p id="resultMeta"></p>
+      </div>
+    </header>
+    <main class="container">
+      <section class="card">
+        <h2>Score Summary</h2>
+        <div class="summary-grid" id="summaryGrid"></div>
+        <div class="charts">
+          <canvas id="timeChart" aria-label="Time spent per question chart"></canvas>
+          <canvas id="accuracyChart" aria-label="Accuracy doughnut chart"></canvas>
+        </div>
+        <div class="actions" style="margin-top: 2rem;">
+          <button class="btn secondary" id="reviewToggle" type="button">Review Quiz</button>
+          <button class="btn primary" id="retakeQuiz" type="button">Take Another Quiz</button>
+        </div>
+      </section>
+      <section class="card">
+        <h2>Per-question Breakdown</h2>
+        <div class="table-wrapper" style="overflow-x: auto;">
+          <table class="results-table" aria-describedby="resultMeta">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Question</th>
+                <th>Selected Answer</th>
+                <th>Correct Answer</th>
+                <th>Time Spent</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="resultsBody"></tbody>
+          </table>
+        </div>
+      </section>
+      <section class="card hidden" id="reviewSection">
+        <h2>Review Answers</h2>
+        <div class="review-panel" id="reviewPanel"></div>
+      </section>
+    </main>
+    <script src="vendor/chart.min.js"></script>
+    <script type="module" src="assets/js/results.js"></script>
+  </body>
+</html>
+

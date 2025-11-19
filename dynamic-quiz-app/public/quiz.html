@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz | Dynamic Quiz Application</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container">
+        <h1>Quiz in Progress</h1>
+        <p id="quiz-meta" aria-live="polite"></p>
+      </div>
+    </header>
+    <main class="container">
+      <div class="quiz-layout" aria-live="polite">
+        <aside class="quiz-sidebar">
+          <div class="timer" aria-live="assertive">
+            <small>Time left</small>
+            <span id="timer">00:30</span>
+          </div>
+          <div class="card">
+            <h3>Questions</h3>
+            <div class="question-nav" id="questionNav" role="navigation" aria-label="Question navigation"></div>
+          </div>
+        </aside>
+        <section class="card question-card" aria-live="polite">
+          <div>
+            <p class="muted" id="questionCounter"></p>
+            <h2 id="questionPrompt"></h2>
+          </div>
+          <form id="choicesForm" class="choices" aria-label="Answer choices"></form>
+          <div class="quiz-actions">
+            <button class="btn secondary" id="prevQuestion" type="button">Previous</button>
+            <button class="btn secondary" id="nextQuestion" type="button">Next</button>
+            <button class="btn primary" id="submitQuiz" type="button">Submit Quiz</button>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="assets/js/quiz.js"></script>
+  </body>
+</html>
+

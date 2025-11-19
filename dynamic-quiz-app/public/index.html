@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Quiz Application</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container">
+        <h1>Dynamic Quiz Application</h1>
+        <p role="doc-subtitle">
+          Practice smarter with curated questions, adaptive timers, and rich
+          analytics.
+        </p>
+      </div>
+    </header>
+    <main class="container">
+      <section class="card" aria-labelledby="quiz-setup-title">
+        <h2 id="quiz-setup-title">Choose Your Challenge</h2>
+        <form id="quiz-setup-form" class="form-grid" aria-label="Quiz setup form">
+          <label class="form-field">
+            <span>Category</span>
+            <select id="category" name="category" required aria-label="Select quiz category">
+              <option value="Math">Math</option>
+              <option value="General">General</option>
+              <option value="Science">Science</option>
+            </select>
+          </label>
+          <label class="form-field">
+            <span>Difficulty</span>
+            <div class="radio-group" role="radiogroup" aria-label="Difficulty options">
+              <label>
+                <input type="radio" name="difficulty" value="easy" checked />
+                Easy
+              </label>
+              <label>
+                <input type="radio" name="difficulty" value="medium" />
+                Medium
+              </label>
+              <label>
+                <input type="radio" name="difficulty" value="hard" />
+                Hard
+              </label>
+            </div>
+          </label>
+          <label class="form-field">
+            <span>Seconds per question</span>
+            <input
+              type="number"
+              id="timeLimit"
+              name="timeLimit"
+              value="30"
+              min="10"
+              max="120"
+              step="5"
+              aria-label="Seconds allowed for each question"
+            />
+          </label>
+          <button type="submit" class="btn primary" id="startQuiz">Start Quiz</button>
+        </form>
+      </section>
+    </main>
+    <footer class="container footer">
+      <p>&copy; <span id="year"></span> Dynamic Quiz Application</p>
+    </footer>
+    <script type="module">
+      import { saveToSession } from "./assets/js/utils.js";
+
+      const form = document.getElementById("quiz-setup-form");
+      const yearSpan = document.getElementById("year");
+      yearSpan.textContent = new Date().getFullYear();
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const category = form.category.value;
+        const difficulty = form.difficulty.value;
+        const timeLimit = Number(form.timeLimit.value) || 30;
+
+        const preferences = {
+          category,
+          difficulty,
+          timeLimit: Math.min(Math.max(timeLimit, 10), 120),
+          startedAt: new Date().toISOString(),
+        };
+
+        saveToSession("quizPreferences", preferences);
+        window.location.href = "quiz.html";
+      });
+    </script>
+  </body>
+</html>
+
